@@ -1,7 +1,7 @@
 {
   "name": "kc_web_dev_test",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "author": "Kelvin Chukwu <chukwu.kelvin@yahoo.com>",
   "license": "MIT",
   "dependencies": {
@@ -16,5 +16,8 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
+  },
+  "scripts": {
+    "dev": "nodemon run src/server.js"
   }
 }
