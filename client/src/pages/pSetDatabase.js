@@ -1,11 +1,6 @@
 import { useMemo, useState, useEffect } from 'react';
 import Table  from '../Table';
 
-/**
- * For psets just directly get name and doi
- * for pset-databse, name can get directly, doi, need to go one level into repositories, take the first result but null check just in case
-*/
-
 function DefaultColumnFilter({
   column: { filterValue, preFilteredRows, setFilter },
 }) {
@@ -57,9 +52,9 @@ function PSetDatabase() {
   );
 
   useEffect(() => {
-    fetch("/api/psets")
+    fetch("/api/pset-database")
       .then((res) => res.json())
-      .then((data) => setData(data.map(pSet => ({ name: pSet.name, doi: ` https://doi.org/${pSet.doi}` }))));
+      .then((data) => setData(data.map(pSet => ({ name: pSet.name, doi: `https://doi.org/${pSet?.repositories[0]?.doi}`}))));
   }, []);
 
 
