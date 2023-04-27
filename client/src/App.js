@@ -1,6 +1,7 @@
 
 import './App.css';
-import { useState, useEffect } from 'react';
+import { useMemo, useState, useEffect } from 'react';
+import Table  from './Table';
 
 
 /**
@@ -9,6 +10,26 @@ import { useState, useEffect } from 'react';
 */
 function App() {
   const [data, setData] = useState([]);
+
+  const columns = useMemo(
+    () => [
+      {
+        Header: "PSet Data",
+        // First group columns
+        columns: [
+          {
+            Header: "Name",
+            accessor: "name",
+          },
+          {
+            Header: "DOI",
+            accessor: "doi",
+          },
+        ],
+      },
+    ],
+    []
+  );
 
   useEffect(() => {
     fetch("/api/psets")
@@ -19,7 +40,7 @@ function App() {
 
   return (
     <div className="App">
-      <p>{!data ? "Loading..." : data.map(pSet => <div>{pSet.name}</div>)}</p>
+      <Table columns={columns} data={data} />
     </div>
   );
 }
