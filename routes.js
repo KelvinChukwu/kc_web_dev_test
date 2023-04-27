@@ -3,12 +3,9 @@ const https = require('https');
 const mongoose = require('mongoose');
 const PSetDataObject = require('./DataObject');
 
-
 async function getPsetData(){
-
     const PsetData = await PSetDataObject.find({});
     return PsetData;
-  
   }
 
 routes.get('/', (req, res) => {
@@ -16,7 +13,7 @@ routes.get('/', (req, res) => {
 });
 
 routes.get('/api/psets', (req, res) => {
-    var url = 'https://www.orcestra.ca/api/psets/canonical';
+    const url = 'https://www.orcestra.ca/api/psets/canonical';
     https.get(url, (resp) => {
         let data = '';
 
@@ -34,15 +31,12 @@ routes.get('/api/psets', (req, res) => {
 });
 
 routes.get('/api/pset-database', (req, res) => {
-    var connectionString = 'mongodb+srv://root:root@development-cluster-ptdz3.azure.mongodb.net/orcestra-new?retryWrites=true&w=majority';
+    const connectionString = 'mongodb+srv://root:root@development-cluster-ptdz3.azure.mongodb.net/orcestra-new?retryWrites=true&w=majority';
     mongoose.connect(connectionString);
 
-    getPsetData().then(function(FoundItems){
-    
-        res.send(FoundItems);
-    
+    getPsetData().then(function(foundPSets){
+        res.send(foundPSets);
       });
-
 });
 
 module.exports = routes;
