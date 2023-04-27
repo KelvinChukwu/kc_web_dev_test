@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
 
-const pSetDataObjectSchema = new Schema(
+const dataObjectSchema = new Schema(
     {
         datasetType: String,
         name: {
@@ -44,5 +44,5 @@ const pSetDataObjectSchema = new Schema(
     }
 );
 
-const PSetDataObject = model('PSetDataObject', pSetDataObjectSchema);
-export default PSetDataObject;
+const DataObject = model('DataObject', dataObjectSchema);
+module.exports = DataObject;
