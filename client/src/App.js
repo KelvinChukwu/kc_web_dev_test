@@ -1,7 +1,9 @@
 import React from "react";
-import logo from './logo.svg';
 import './App.css';
-
+/**
+ * For psets just directly get name and doi
+ * for pset-databse, name can get directly, doi, need to go one level into repositories, take the first result but null check just in case
+*/
 function App() {
   const [data, setData] = React.useState([]);
 
@@ -14,7 +16,6 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>{!data ? "Loading..." : data.map(pSet => <div>{pSet.name}</div>)}</p>
       </header>
     </div>
