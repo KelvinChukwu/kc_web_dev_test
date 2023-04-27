@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect } from 'react';
-import Table  from '../Table';
+import Table from '../Table';
 
 function DefaultColumnFilter({
   column: { filterValue, preFilteredRows, setFilter },
@@ -35,7 +35,7 @@ function PSetDatabase() {
           {
             Header: "DOI",
             accessor: "doi",
-            Cell: props =>  <a href={props.value}>{props.value}</a>
+            Cell: props => <a href={props.value ?? '#'}>{props.value ?? '-'}</a>
           },
         ],
       },
@@ -54,7 +54,7 @@ function PSetDatabase() {
   useEffect(() => {
     fetch("/api/pset-database")
       .then((res) => res.json())
-      .then((data) => setData(data.map(pSet => ({ name: pSet.name, doi: `https://doi.org/${pSet?.repositories[0]?.doi}`}))));
+      .then((data) => setData(data.map(pSet => ({ name: pSet.name, doi: pSet?.repositories[0]?.doi == null || pSet?.repositories[0]?.doi === ""  ? null : `https://doi.org/${pSet?.repositories[0]?.doi}` }))));
   }, []);
 
 
