@@ -1,5 +1,6 @@
 import React from "react";
 import { useFilters, useTable } from "react-table";
+import './Table.css'
 
 export default function Table({ columns, data, defaultColumn }) {
     // Use the useTable Hook to send the columns and data to build the table
@@ -21,7 +22,7 @@ export default function Table({ columns, data, defaultColumn }) {
                 {headerGroups.map(headerGroup => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
                         {headerGroup.headers.map(column => (
-                            <th {...column.getHeaderProps()}>
+                            <th class ='table_header' {...column.getHeaderProps()}>
                                 {column.render("Header")}
                                 <div>{column.canFilter ? column.render('Filter') : null}</div>
                             </th>
@@ -33,7 +34,7 @@ export default function Table({ columns, data, defaultColumn }) {
                 {rows.map((row, i) => {
                     prepareRow(row);
                     return (
-                        <tr {...row.getRowProps()}>
+                        <tr class = 'data_cell' {...row.getRowProps()}>
                             {row.cells.map(cell => {
                                 return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
                             })}
