@@ -17,7 +17,7 @@ export default function Table({ columns, data, defaultColumn }) {
     }, useFilters);
 
     return (
-        <table {...getTableProps()}>
+        <table class = 'table' {...getTableProps()}>
             <thead>
                 {headerGroups.map(headerGroup => (
                     <tr {...headerGroup.getHeaderGroupProps()}>

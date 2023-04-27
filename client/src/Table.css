@@ -5,3 +5,9 @@
   .data_cell{
     text-align: center;
   }
+
+  .table th, .table td {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #000000;
+  }
