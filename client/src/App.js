@@ -34,7 +34,7 @@ function App() {
   useEffect(() => {
     fetch("/api/psets")
       .then((res) => res.json())
-      .then((data) => setData(data.map(pSet => ({ name: pSet.name, doi: pSet.doi }))));
+      .then((data) => setData(data.map(pSet => ({ name: pSet.name, doi: ` https://doi.org/${pSet.doi}` }))));
   }, []);
 
 
