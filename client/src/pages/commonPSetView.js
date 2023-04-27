@@ -18,7 +18,7 @@ function DefaultColumnFilter({
 }
 
 
-function PSetDatabase() {
+export default function CommonPSetView({api_endpoint}) {
   const [data, setData] = useState([]);
 
   const columns = useMemo(
@@ -52,10 +52,10 @@ function PSetDatabase() {
   );
 
   useEffect(() => {
-    fetch("/api/pset-database")
+    fetch(api_endpoint)
       .then((res) => res.json())
       .then((data) => setData(data.map(pSet => ({ name: pSet.name, doi: pSet?.repositories[0]?.doi == null || pSet?.repositories[0]?.doi === ""  ? null : `https://doi.org/${pSet?.repositories[0]?.doi}` }))));
-  }, []);
+  }, [api_endpoint]);
 
 
   return (
@@ -65,4 +65,3 @@ function PSetDatabase() {
   );
 }
 
-export default PSetDatabase;
