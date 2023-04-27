@@ -3,11 +3,28 @@ import './App.css';
 import { useMemo, useState, useEffect } from 'react';
 import Table  from './Table';
 
-
 /**
  * For psets just directly get name and doi
  * for pset-databse, name can get directly, doi, need to go one level into repositories, take the first result but null check just in case
 */
+
+function DefaultColumnFilter({
+  column: { filterValue, preFilteredRows, setFilter },
+}) {
+  const count = preFilteredRows.length
+
+  return (
+    <input
+      value={filterValue || ''}
+      onChange={e => {
+        setFilter(e.target.value || undefined) // Set undefined to remove the filter entirely
+      }}
+      placeholder={`Search ${count} records...`}
+    />
+  )
+}
+
+
 function App() {
   const [data, setData] = useState([]);
 
@@ -20,6 +37,7 @@ function App() {
           {
             Header: "Name",
             accessor: "name",
+            Filter: DefaultColumnFilter,
           },
           {
             Header: "DOI",
@@ -32,6 +50,14 @@ function App() {
     []
   );
 
+  const defaultColumn = useMemo(
+    () => ({
+      // Let's set up our default Filter UI
+      Filter: ""
+    }),
+    []
+  );
+
   useEffect(() => {
     fetch("/api/psets")
       .then((res) => res.json())
@@ -41,7 +67,7 @@ function App() {
 
   return (
     <div className="App">
-      <Table columns={columns} data={data} />
+      <Table columns={columns} data={data} defaultColumn={defaultColumn} />
     </div>
   );
 }
