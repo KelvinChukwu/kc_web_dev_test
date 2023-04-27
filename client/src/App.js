@@ -24,6 +24,7 @@ function App() {
           {
             Header: "DOI",
             accessor: "doi",
+            Cell: props =>  <a href="url">{props.value}</a>
           },
         ],
       },
