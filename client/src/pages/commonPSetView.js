@@ -1,55 +1,21 @@
 import { useMemo, useState, useEffect } from 'react';
-import Table from '../Table';
+import { DataGrid } from '@mui/x-data-grid';
 
-function DefaultColumnFilter({
-  column: { filterValue, preFilteredRows, setFilter },
-}) {
-  const count = preFilteredRows.length
-
-  return (
-    <input
-      value={filterValue || ''}
-      onChange={e => {
-        setFilter(e.target.value || undefined) // Set undefined to remove the filter entirely
-      }}
-      placeholder={`Search ${count} records...`}
-    />
-  )
-}
-
-
-export default function CommonPSetView({api_endpoint, dataMapFunction}) {
+export default function CommonPSetView({ api_endpoint, dataMapFunction }) {
   const [data, setData] = useState([]);
 
-  const columns = useMemo(
-    () => [
-      {
-        Header: "PSet Data",
-        // First group columns
-        columns: [
-          {
-            Header: "Name",
-            accessor: "name",
-            Filter: DefaultColumnFilter,
-          },
-          {
-            Header: "DOI",
-            accessor: "doi",
-            Cell: props => <a href={props.value ?? '#'}>{props.value ?? '-'}</a>
-          },
-        ],
-      },
-    ],
-    []
-  );
+  const rows_2 = useMemo(() => data.map((pSet, i) => ({ id: i, name: pSet.name, doi: pSet.doi })), [data]);
 
-  const defaultColumn = useMemo(
-    () => ({
-      // Let's set up our default Filter UI
-      Filter: ""
-    }),
-    []
-  );
+  const columns_2 = useMemo(() => [
+    { field: 'name', headerName: 'Name', flex: 1 },
+    {
+      field: 'doi',
+      headerName: 'DOI',
+      width: 320,
+      renderCell: (props) => (<a href={props.value ?? '#'}>{props.value ?? '-'}</a>)
+    },
+
+  ], []);
 
   useEffect(() => {
     fetch(api_endpoint)
@@ -60,7 +26,9 @@ export default function CommonPSetView({api_endpoint, dataMapFunction}) {
 
   return (
     <div>
-      <Table columns={columns} data={data} defaultColumn={defaultColumn} />
+      <div style={{ width: '100%' }}>
+        <DataGrid rows={rows_2} columns={columns_2} />
+      </div>
     </div>
   );
 }
