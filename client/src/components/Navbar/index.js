@@ -1,8 +1,11 @@
-import React from "react";
+import {useEffect} from "react";
 import { Nav, NavLink, NavMenu }
 	from "./NavbarElements";
 
 const Navbar = () => {
+	useEffect(() => {
+		document.title = 'PSet Tables Index';
+	}, []);
 	return (
 		<>
 			<Nav>

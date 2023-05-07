@@ -1,4 +1,5 @@
 import CommonPSetView from "./commonPSetView";
+import { useEffect } from "react";
 
 function pSetsMap(pSet) {
   return (
@@ -13,6 +14,9 @@ function pSetsMap(pSet) {
 }
 
 function PSets() {
+  useEffect(() => {
+    document.title = 'Psets';
+  }, []);
   return (
     <CommonPSetView api_endpoint={"/api/psets"} dataMapFunction={pSetsMap} />
   );

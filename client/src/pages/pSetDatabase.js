@@ -1,4 +1,5 @@
 import CommonPSetView from "./commonPSetView";
+import { useEffect } from "react";
 
 function pSetDatabaseMap(pSet) {
   return (
@@ -13,6 +14,9 @@ function pSetDatabaseMap(pSet) {
 }
 
 function PSetDatabase() {
+  useEffect(() => {
+    document.title = 'Pset Database';
+  }, []);
   return (
     <CommonPSetView api_endpoint={"/api/pset-database"} dataMapFunction={pSetDatabaseMap} />
   );
