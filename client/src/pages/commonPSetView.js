@@ -42,6 +42,7 @@ export default function CommonPSetView({ api_endpoint, dataMapFunction }) {
     <div>
       <div style={{ width: '100%' }}>
         <DataGrid
+          sx={{ '.MuiDataGrid-columnHeaderTitle': { 'font-weight': 'bold' } }}
           rows={rows}
           columns={columns}
           slots={{
@@ -55,6 +56,8 @@ export default function CommonPSetView({ api_endpoint, dataMapFunction }) {
               setFilterButtonElement,
             },
           }}
+          showColumnVerticalBorder={true}
+          showCellVerticalBorder={true}
         />
       </div>
     </div>
