@@ -1,6 +1,7 @@
 import { useMemo, useState, useEffect } from 'react';
 import { DataGrid, GridToolbarContainer, GridToolbarFilterButton } from '@mui/x-data-grid';
 import PropTypes from 'prop-types';
+import { Box } from '@mui/material';
 
 function HeaderToolbar({ setFilterButtonElement }) {
   return (
@@ -39,7 +40,7 @@ export default function CommonPSetView({ api_endpoint, dataMapFunction }) {
 
 
   return (
-    <div>
+    <Box component="body" p={8}>
       <div style={{ width: '100%' }}>
         <DataGrid
           sx={{ '.MuiDataGrid-columnHeaderTitle': { 'font-weight': 'bold' } }}
@@ -60,7 +61,7 @@ export default function CommonPSetView({ api_endpoint, dataMapFunction }) {
           showCellVerticalBorder={true}
         />
       </div>
-    </div>
+    </Box>
   );
 }
 

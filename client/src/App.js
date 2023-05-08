@@ -6,12 +6,14 @@ import { BrowserRouter as Router, Routes, Route }
 import Home from './pages';
 import PSets from './pages/pSets';
 import PSetDatabase from './pages/pSetDatabase';
+import TopAppBar from './components/TopAppBar';
 
 
 function App() {
 	return (
 		<Router>
-			<Navbar />
+			{/* '<Navbar />' */}
+			<TopAppBar/>
 			<Routes>
 				<Route exact_path='/' exact element={<Home />} />
 				<Route path='/psets' element={<PSets />} />
