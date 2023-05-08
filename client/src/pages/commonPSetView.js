@@ -40,10 +40,15 @@ export default function CommonPSetView({ api_endpoint, dataMapFunction }) {
 
 
   return (
-    <Box component="body" p={8}>
-      <div style={{ width: '100%' }}>
+    <Box component="body" p={4}>
+      <div style={{ width: '100%', alignSelf: 'flex-start', height: 700 }}>
         <DataGrid
-          sx={{ '.MuiDataGrid-columnHeaderTitle': { 'font-weight': 'bold' } }}
+          sx={
+            {
+              '.MuiDataGrid-columnHeaderTitle': { 'font-weight': 'bold' },
+              '.MuiDataGrid-toolbarContainer': { 'position': 'sticky' }
+            }
+          }
           rows={rows}
           columns={columns}
           slots={{

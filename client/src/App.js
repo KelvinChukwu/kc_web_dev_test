@@ -11,7 +11,6 @@ import TopAppBar from './components/TopAppBar';
 function App() {
 	return (
 		<Router>
-			{/* '<Navbar />' */}
 			<TopAppBar/>
 			<Routes>
 				<Route exact_path='/' exact element={<Home />} />
