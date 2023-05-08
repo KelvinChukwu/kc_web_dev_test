@@ -11,9 +11,9 @@ import TopAppBar from './components/TopAppBar';
 function App() {
 	return (
 		<Router>
-			<TopAppBar/>
+			<TopAppBar />
 			<Routes>
-				<Route exact_path='/' exact element={<Home />} />
+				<Route path='/' element={<Home />} />
 				<Route path='/psets' element={<PSets />} />
 				<Route path='/pset-database' element={<PSetDatabase />} />
 			</Routes>
